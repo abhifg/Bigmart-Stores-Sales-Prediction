@@ -5,6 +5,7 @@ from src.exception import CustomException
 from sklearn.model_selection import train_test_split
 import pandas as pd
 from dataclasses import dataclass
+from src.componants.data_transformation import DataTransformation
 
 @dataclass
 class DataIngestionConfig:
@@ -19,8 +20,9 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Entered the Data Ingestion componant")
         try:
-            df=pd.read_csv('notebook/data/Preprocessed_Data.csv')
-            df.drop(columns=['Unnamed: 0'],inplace=True)
+            df=pd.read_csv('notebook/data/Bigmart.csv')
+            df["Outlet_Age"]=2026-df["Outlet_Establishment_Year"]
+            df.drop(columns=['Item_Identifier','Outlet_Identifier','Outlet_Establishment_Year'],inplace=True)
             logging.info("Read the dataset as DataFrame")
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
             df.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
@@ -43,5 +45,10 @@ class DataIngestion:
     
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data,test_data=obj.initiate_data_ingestion()
+
+    data_transformation=DataTransformation()
+    data_transformation.initiate_data_transformation(train_data,test_data)
+
+
 
