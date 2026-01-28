@@ -1,6 +1,8 @@
 import os
 import sys
 from dataclasses import dataclass
+
+from pyparsing import col
 from src.logger import logging
 from src.exception import CustomException
 import numpy as np
@@ -57,6 +59,20 @@ class ItemFatContentCleaner(BaseEstimator, TransformerMixin):
         })
         return X
 
+class CubeRootTransformer(BaseEstimator, TransformerMixin):
+    def __init__(self, column):
+        self.column = column
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        X = X.copy()
+        X[self.column] = X[self.column] ** (1/3)
+        return X
+
+
+
 
 class DataTransformation:
     def __init__(self):
@@ -72,7 +88,9 @@ class DataTransformation:
                 steps=[
                     ("item_weight_imputer", ItemWeightImputer()),
                     ("outlet_size_imputer", OutletSizeImputer()),
-                    ("fat_cleaner", ItemFatContentCleaner())
+                    ("fat_cleaner", ItemFatContentCleaner()),
+                    ("cube_root_transformer",CubeRootTransformer(column="Item_Visibility"))
+                    
                     
                 ]
             )

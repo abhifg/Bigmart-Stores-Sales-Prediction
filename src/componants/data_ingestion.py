@@ -6,6 +6,9 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 from dataclasses import dataclass
 from src.componants.data_transformation import DataTransformation
+from src.componants.data_transformation import DataTransformationConfig
+from src.componants.model_trainer import ModelTrainerConfig
+from src.componants.model_trainer import ModelTrainer
 
 @dataclass
 class DataIngestionConfig:
@@ -23,6 +26,15 @@ class DataIngestion:
             df=pd.read_csv('notebook/data/Bigmart.csv')
             df["Outlet_Age"]=2026-df["Outlet_Establishment_Year"]
             df.drop(columns=['Item_Identifier','Outlet_Identifier','Outlet_Establishment_Year'],inplace=True)
+            df["Item_Outlet_Sales"] = df["Item_Outlet_Sales"] ** (1/8)
+
+            logging.info("Power transformation applied on Item_Outlet_Sales")
+            Q1=df["Item_Visibility"].quantile(0.25)
+            Q3=df["Item_Visibility"].quantile(0.75)
+            IQR=Q3-Q1
+            lower=Q1-(1.5*IQR)
+            upper=Q3+(1.5*IQR)
+            df=df[(df["Item_Visibility"]>=lower)&(df["Item_Visibility"]<=upper)]
             logging.info("Read the dataset as DataFrame")
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
             df.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
@@ -48,7 +60,12 @@ if __name__=="__main__":
     train_data,test_data=obj.initiate_data_ingestion()
 
     data_transformation=DataTransformation()
-    data_transformation.initiate_data_transformation(train_data,test_data)
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
+    
+    model_trainer=ModelTrainer()
+    r2_score,model=model_trainer.initiate_model_trainer(train_arr,test_arr)
+    print("R2 Score :",r2_score)
+    print(model)
 
 
 
