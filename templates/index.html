@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIG MART SALES PREDICTION</title>
+</head>
+<style>
+    body{
+        margin:0px;
+        padding:0px;
+        background: url('https://png.pngtree.com/thumb_back/fh260/background/20240327/pngtree-supermarket-aisle-with-empty-shopping-cart-at-grocery-store-retail-business-image_15646095.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+   
+    .stylish-heading {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 3rem;
+        font-weight: bold;
+        color: transparent;
+        background: linear-gradient(90deg, #033455, #03554a);
+        background-clip: text;
+        text-align: center;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2), 0 0 25px rgba(255, 255, 255, 0.3);
+        margin-top: 50px;
+        padding: 10px;
+      }
+      .center-container {
+        display: flex;
+        justify-content: center; /* horizontal centering */
+        align-items: center;    /* vertical centering */
+        height: 100%;
+        
+        
+      }
+    .btn-3d {
+        padding: 14px 28px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background: linear-gradient(145deg, #420d88, #ad1fad);
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 6px #080111, 0 -2px rgba(255,255,255,0.2) inset;
+        cursor: pointer;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+      }
+      .btn-3d:active {
+        box-shadow: 0 2px #411764, 0 -1px rgba(255,255,255,0.2) inset;
+        transform: translateY(4px);
+      }
+</style>
+<body>
+
+    <section>
+        <div class="mid">
+            <h1 class="stylish-heading">Big Mart Sales Prediction</h1>
+        </div>
+    </section>
+    <div class="center-container">
+    <a href="{{ url_for('predict') }}">
+    <button class="btn-3d">Predict Now</button>
+    </a>
+    </div>
+</body>
+</html>

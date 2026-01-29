@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIG MART SALES PREDICTION-FORM</title>
+</head>
+<style>
+    body{
+        margin:0px;
+        padding:0px;
+        background: url('https://png.pngtree.com/thumb_back/fh260/background/20240327/pngtree-supermarket-aisle-with-empty-shopping-cart-at-grocery-store-retail-business-image_15646095.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+   
+    .stylish-heading {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 3rem;
+        font-weight: bold;
+        color: transparent;
+        background: linear-gradient(90deg, #033455, #03554a);
+        background-clip: text;
+        text-align: center;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2), 0 0 25px rgba(255, 255, 255, 0.3);
+        margin-top: 50px;
+        padding: 10px;
+      }
+      h2 {
+        text-align: center;
+        font-family: 'Segoe UI', sans-serif;
+        color: transparent;
+        background: linear-gradient(90deg, #033455, #03554a);
+        background-clip: text;
+        text-align: center;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2), 0 0 25px rgba(255, 255, 255, 0.3);
+        margin-top: 50px;
+        padding: 10px;
+    }
+    table {
+        border-collapse: separate;
+        border-spacing: 15px;
+        column-gap: 100px;
+        font-family: sans-serif;
+        width: 40%;
+        background-color: rgba(240, 248, 255, 0.7);
+        border-radius: 10px;
+        
+    }
+    .features {
+        font-family: 'Segoe UI', sans-serif;
+        font-weight: bold;
+        color: transparent;
+        background: linear-gradient(90deg, #033455, #03554a);
+        background-clip: text;
+    }
+    .button_center {
+        display: flex;
+    justify-content: center;
+    gap: 20px;
+    }
+    .predict_button{
+        padding: 14px 32px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #2c3e50;
+        background: transparent;
+        border: 2px solid #2c3e50;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .center{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .predict_button:hover{
+        background-color: #2c3e50;
+        color: white;
+        
+    }
+    h3 {
+        text-align: center;
+        font-family: 'Segoe UI', sans-serif;
+    }
+    .copyright {
+        font-family: 'Segoe UI', sans-serif;
+        font-weight: bold;
+        color: transparent;
+        background: linear-gradient(90deg, #033455, #03554a);
+        background-clip: text;
+    }
+
+</style>
+<body>
+    <section>
+        <div class="mid">
+            <h1 class="stylish-heading">Big Mart Sales Prediction</h1>
+        </div>
+    </section>
+    <br>
+    <h2>Item Information</h2>
+    <form action="{{url_for('predict')}}" method="POST" id="myform" onsubmit="return validateForm()">
+        <table class="center">
+            <tbody>
+                <tr>
+                    <td class="features">Item Type </td>
+                    <td>
+                        <select name="item_type" id="item_type" required>
+                            <option value="Breads">Breads</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Canned">Canned Foods</option>
+                            <option value="Dairy">Dairy Foods</option>
+                            <option value="Frozen Foods">Frozen Foods</option>
+                            <option value="Fruits and Vegetables">Fruits and Vegetables</option>
+                            <option value="Hard Drinks">Hard Drinks</option>
+                            <option value="Health and Hygiene">Health and Hygiene</option>
+                            <option value="Household">Household</option>
+                            <option value="Baking Goods">Baking Goods</option>
+                            <option value="Meat">Meat</option>
+                            <option value="Others">Others</option>
+                            <option value="Seafood">Seafood</option>
+                            <option value="Snack Foods">Snack Foods</option>
+                            <option value="Soft Drinks">Soft Drinks</option>
+                            <option value="Starchy Foods">Starchy Foods</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="features">Item Fat Content </td>
+                    <td>
+                        <select name="item_fat_content" id="item_fat_content" required="required">
+                            <option value="Regular">Regular</option>
+                            <option value="Low Fat">Low Fat</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="features">Item Weight </td>
+                    <td>
+                        <div class="formdesign" id="item_weight" style="text-align: left">
+                            <input type="number" step="any" name="item_weight" placeholder="In Grams" required="required">
+                            <b><span class="formerror" style="color: crimson"></span></b>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="features">Item Visibility </td>
+                    <td>
+                        <div class="formdesign" id="item_visibility" style="text-align: left">
+                            <input type="number" step="any" name="item_visibility" placeholder="In Percentage" required="required">
+                            <b><span class="formerror" style="color: crimson"></span></b>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="features">Item MRP </td>
+                    <td>
+                        <div class="formdesign" id="item_mrp" style="text-align: left">
+                            <input type="number" step="any" name="item_mrp" placeholder="In Rupees(&#8377)" required="required">
+                            <b><span class="formerror" style="color: crimson"></span></b>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="features">Outlet Size </td>
+                    <td>
+                        <select name="outlet_size" id="outlet_size" required="required">
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                            <option value="Small">Small</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="features">Outlet Type </td>
+                    <td>
+                        <select name="outlet_type" id="outlet_type" required="required">
+                            <option value="Supermarket Type1">Supermarket Type 1</option>
+                            <option value="Supermarket Type2">Supermarket Type 2</option>
+                            <option value="Supermarket Type3">Supermarket Type 3</option>
+                            <option value="Grocery Store">Grocery Store</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="features">Outlet Location Type </td>
+                    <td>
+                        <select name="outlet_location_type" id="outlet_location_type" required="required">
+                            <option value="Tier 1">Tier 1</option>
+                            <option value="Tier 2">Tier 2</option>
+                            <option value="Tier 3">Tier 3</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="features">Outlet Establishment Year </td>
+                    <td>
+                        <div class="formdesign" id="outlet_est_year" style="text-align: left">
+                            <input type="number" step="any" name="outlet_est_year" placeholder=" Between 1950-2025" required="required">
+                            <b><span class="formerror" style="color: crimson"></span></b>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </tbody>
+
+        </table>
+        <br>
+        <br>
+        <br>
+        <div class="button_center">
+            <button class="predict_button" type="submit" form="myform" id="submit">Predict Item-Outlet Sales</button>
+            <button class="predict_button" type="reset" form="myform" id="reset">Reset Inputs</button>
+        </div>
+        <br>
+        <div class="center">
+            <h3 style="color: rgb(6, 52, 83);">{{ prediction_text }}</h3>
+        </div>
+        
+    </form>
+    <br>
+    <p class="copyright" >Created By - Abhirup Ghosh | 2026</p>
+    
+</body>
+
+<script>
+    function clearErrors() {
+        errors = document.getElementsByClassName('formerror');
+        for (let item of errors) {
+            item.innerHTML = "";
+        }
+    }
+    function setErrors(id,error){
+        element=document.getElementById(id);
+        element.getElementsByClassName('formerror')[0].innerHTML=error;
+    }
+    function validateForm(){
+        var returnval=true;
+        clearErrors();
+
+        var item_weight=document.forms['myform']['item_weight'].value;
+        if (isNaN(parseFloat(item_weight))) {
+            setErrors("item_weight", " *Enter numeric value!");
+            returnval = false;
+        }
+        if (parseFloat(item_weight) < 0) {
+            setErrors("item_weight", " *Enter positive value!");
+            returnval = false;
+        }
+        var item_visibility = document.forms['myform']["item_visibility"].value;
+        if (isNaN(parseFloat(item_visibility))) {
+            setErrors("item_visibilty", " *Enter numeric value!");
+            returnval = false;
+        }
+        if (parseFloat(item_visibility) < 0) {
+            setErrors("item_visibility", " *Enter between 0 - 100!");
+            returnval = false;
+        }
+        if (parseFloat(item_visibility) > 100) {
+            setErrors("item_visibility", " *Enter between 0 - 100!");
+            returnval = false;
+        }
+        var item_mrp = document.forms['myform']["item_mrp"].value;
+        if (isNaN(parseFloat(item_mrp))) {
+            setErrors("item_mrp", " *Enter numeric value!");
+            returnval = false;
+        }
+        if (parseFloat(item_mrp) < 0) {
+            setErrors("item_mrp", " *Enter positive value!");
+            returnval = false;
+        }
+        var outlet_est_year = document.forms['myform']["outlet_est_year"].value;
+        if (isNaN(parseFloat(outlet_est_year))) {
+            setErrors("outlet_est_year", " *Enter numeric value!");
+            returnval = false;
+        }
+        if (parseFloat(outlet_est_year) < 1950) {
+            setErrors("outlet_est_year", " *Enter between 1950 - 2025!");
+            returnval = false;
+        }
+        if (parseFloat(outlet_est_year) > 2025) {
+            setErrors("outlet_est_year", " *Enter between 1950 - 2025!");
+            returnval = false;
+        }
+        return returnval;
+    }
+
+</script>
+</html>

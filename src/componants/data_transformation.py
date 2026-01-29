@@ -115,7 +115,7 @@ class DataTransformation:
             onehot_pipeline=Pipeline(
                 [
                     
-                    ("onehotencoder",OneHotEncoder())
+                    ("onehotencoder",OneHotEncoder(handle_unknown="ignore"))
                 ]
             )
 
