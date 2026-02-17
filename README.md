@@ -160,6 +160,8 @@ Azure App Service (Linux Container)
 - Resolved cross-platform architecture incompatibility (ARM64 → AMD64)
 
 ### Deployment Screenshot
+**Home Page**
+<img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/4b2322a6-b202-40ed-a970-f9de357c2129" />
 
 
 ---
