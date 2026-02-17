@@ -162,8 +162,13 @@ Azure App Service (Linux Container)
 ### Deployment Screenshot
 **Home Page**
 <img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/4b2322a6-b202-40ed-a970-f9de357c2129" />
+
 **Prediction Form**
 <img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/98ba1827-9270-4812-9204-62bd9106904b" />
+
+**Prediction**
+<img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/30ad69db-3a5d-4c83-a745-6f7d12229ed8" />
+
 
 
 
