@@ -26,28 +26,6 @@ Shopping malls and Big Marts track individual item sales data to forecast future
 
 ---
 
-## 📁 Project Structure
-
-```
-Bigmart_Store_Sales_Prediction/
-├── app.py                            # Flask application entry point
-├── Dockerfile                        # Docker container configuration
-├── requirements.txt                  # Python dependencies
-├── templates/
-│   ├── index.html                    # Landing page
-│   └── form.html                     # Prediction form
-├── src/
-│   └── pipeline/
-│       └── predict_pipeline.py       # ML prediction pipeline
-├── artifacts/
-│   ├── RandomForest_model.pkl        # Trained Random Forest model
-│   └── preprocessor.pkl             # Data preprocessor
-├── BigmartStoreSalesPrediction.ipynb # EDA & Feature Engineering notebook
-└── BigMart_Model_Fitting.ipynb       # Model training notebook
-```
-
----
-
 ## 📊 Dataset
 
 **Source:** [Kaggle - BigMart Sales Dataset](https://www.kaggle.com/datasets/ahmadrezagholami2001/bigmart-sales-dataset)
@@ -140,8 +118,8 @@ n_estimators: 22, max_depth: 5, min_samples_split: 10, min_samples_leaf: 22
 
 ```bash
 # Clone the repository
-git clone https://github.com//Bigmart_Store_Sales_Prediction.git
-cd Bigmart_Store_Sales_Prediction
+git clone https://github.com//Bigmart-Stores-Sales-Prediction.git
+cd Bigmart-Stores-Sales-Prediction
 
 # Create virtual environment
 python3 -m venv venv
@@ -182,7 +160,7 @@ Azure App Service (Linux Container)
 - Resolved cross-platform architecture incompatibility (ARM64 → AMD64)
 
 ### Deployment Screenshot
-![Azure Deployment Center](screenshots/azure-deployment.png)
+
 
 ---
 
