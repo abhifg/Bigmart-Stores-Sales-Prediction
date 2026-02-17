@@ -172,6 +172,8 @@ Azure App Service (Linux Container)
 **Azure Container Registry**
 <img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/3691e74b-89af-4f42-bc70-b503ae5dd262" />
 
+**Azure App Service**
+<img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/8b44c9d3-8d1a-49c4-80f6-c28f294b8cc1" />
 
 ---
 
