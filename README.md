@@ -169,7 +169,8 @@ Azure App Service (Linux Container)
 **Prediction**
 <img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/30ad69db-3a5d-4c83-a745-6f7d12229ed8" />
 
-
+**Azure Container Registry**
+<img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/3691e74b-89af-4f42-bc70-b503ae5dd262" />
 
 
 ---
